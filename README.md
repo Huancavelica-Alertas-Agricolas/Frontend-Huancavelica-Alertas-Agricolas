@@ -1,129 +1,227 @@
-# Plataforma de Alertas Tempranas para Agricultores de Huancavelica
+# 🛰️ Overview
 
-## Descripción
+### Archivos fuente relevantes
+Este documento ofrece una **visión general completa** del sistema **Frontend Huancavelica Alertas Agrícolas**, incluyendo su propósito, arquitectura de alto nivel, stack tecnológico y capacidades principales.  
+Para información detallada sobre subsistemas específicos, consulta las páginas hijas listadas en el índice.
 
-Aplicación Web Progresiva (PWA) diseñada para entregar alertas climáticas agrícolas a los agricultores de la región de Huancavelica, Perú. El sistema aborda desafíos como conectividad intermitente, accesibilidad lingüística (español, quechua e inglés) y uso prioritario de dispositivos móviles mediante una arquitectura offline-first.
+### Páginas relacionadas
+- Para configuración del sistema y desarrollo local: ver **Getting Started**  
+- Para capas arquitectónicas: ver **System Architecture**  
+- Para autenticación: ver **Authentication System**  
+- Para características PWA y uso sin conexión: ver **Progressive Web App Features**
 
-## Estado del Proyecto
+---
 
-- **Frontend**: En desarrollo (Avanzado). Arquitectura, code splitting y características PWA definidas
-- **Backend**: En desarrollo con arquitectura de microservicios
-- **Base de datos**: Esquema implementado en PostgreSQL
+## 📁 Estructura del repositorio y enlaces
 
-## Características
+Abajo se describe de forma natural qué contiene cada carpeta importante y, al final de cada sección, un espacio para pegar el permalink (URL absoluta en GitHub) o el enlace relativo dentro del repositorio. Reemplaza los placeholders por los enlaces reales para que los usuarios puedan saltar con un clic a la documentación correspondiente.
 
-- Arquitectura Offline-First con persistencia en localStorage/IndexedDB
-- Soporte trilingüe (Español, Quechua, English) mediante React Context
-- Sistema de alertas climáticas con clasificación de severidad
-- Gestión de datos agrícolas con Custom Hooks
-- Notificaciones multicanal
-- Optimización de build con Manual Code Splitting
-- Dashboard funcional con componentes clave
+### docs/ — Documentación técnica y procesos
+Contiene guías y documentos de referencia destinados a desarrolladores, operadores y gestores del proyecto. Aquí encontrarás la guía de inicio, la arquitectura del sistema, la descripción del sistema de autenticación, las características PWA, guías de UI y despliegue.
 
-## Tecnologías Utilizadas
+- Permalink: https://github.com/JuanAldairRamirezMendez/Frontend-Huancavelica-Alertas-Agricolas/blob/b9e8a1f90a3a86bbb666c766a63fca3ace9d425b/docs/GettingStarted.md
 
-| Capa | Tecnología | Propósito |
-|------|------------|-----------|
-| Frontend Framework | React | Renderizado de UI basado en componentes |
-| Build System | Vite | Bundling de módulos ES y HMR |
-| Estilos | Tailwind CSS | Framework CSS utility-first |
-| Componentes UI | Radix UI | Primitivas de componentes accesibles |
-| Routing | React Router DOM | Enrutamiento del lado del cliente |
-| Backend | NestJS | Framework para arquitectura de microservicios |
-| Base de Datos | PostgreSQL | Persistencia relacional de datos |
-| Mensajería | Redis Queue | Comunicación asíncrona entre microservicios |
+Archivos típicos:
+- `docs/Getting-Started.md` — pasos para dejar el entorno listo y ejecutar localmente.
+- `docs/System-Architecture.md` — diagramas y decisiones arquitectónicas.
+- `docs/Authentication.md` — flujo de login y manejo de tokens.
+- `docs/PWA-Features.md` — comportamiento offline y service worker.
+- `docs/UI-Components.md` — guía de componentes y patrones de diseño.
+- `docs/Deployment.md` — CI/CD y despliegue (Vercel, Docker).
 
-## Instalación y Uso
-```bash
-# Clonar repositorio
-git clone [repository-url]
-cd [project-directory]
+---
 
-# Ejecutar sistema completo con Docker Compose
-docker-compose up -d
+### src/ — Código fuente de la aplicación 
+El código que se despliega vive aquí. Está organizado en subcarpetas que separan responsabilidades:
 
-# Desarrollo solo del frontend
-npm install
-npm run dev
-```
+- `src/components/` — biblioteca de componentes reutilizables (botones, cards, modals). Cada componente suele incluir su propio `README.md`, tests y stories.
+- `src/pages/` — páginas o vistas ligadas al router (Login, Dashboard, Alerts, Reports, Profile).
+- `src/hooks/` — hooks personalizados que encapsulan lógica (ej.: `useAlerts`, `useAuth`).
+- `src/context/` — providers globales (AuthProvider, LanguageProvider, ThemeProvider) y hooks de consumo (`useAuth()`, `useLanguage()`).
+- `src/utils/` — utilidades puras, formateadores y clientes HTTP (`apiClient`).
+- `src/assets/` — imágenes, iconos y fuentes que deben procesarse con Vite.
 
-## Estructura del Proyecto
+- Permalink raíz: https://github.com/JuanAldairRamirezMendez/Frontend-Huancavelica-Alertas-Agricolas/blob/b9e8a1f90a3a86bbb666c766a63fca3ace9d425b/src/README.md
+- Permalink componentes: https://github.com/JuanAldairRamirezMendez/Frontend-Huancavelica-Alertas-Agricolas/blob/b9e8a1f90a3a86bbb666c766a63fca3ace9d425b/src/components/README.md
+- Permalink hooks: https://github.com/JuanAldairRamirezMendez/Frontend-Huancavelica-Alertas-Agricolas/blob/b9e8a1f90a3a86bbb666c766a63fca3ace9d425b/src/hooks/README.md
+- Permalink context: https://github.com/JuanAldairRamirezMendez/Frontend-Huancavelica-Alertas-Agricolas/blob/b9e8a1f90a3a86bbb666c766a63fca3ace9d425b/src/context/README.md
+- Permalink utils: https://github.com/JuanAldairRamirezMendez/Frontend-Huancavelica-Alertas-Agricolas/blob/b9e8a1f90a3a86bbb666c766a63fca3ace9d425b/src/utils/README.md
+- Permalink assets: https://github.com/JuanAldairRamirezMendez/Frontend-Huancavelica-Alertas-Agricolas/blob/b9e8a1f90a3a86bbb666c766a63fca3ace9d425b/src/assets/README.md
 
-El proyecto utiliza un sistema de build (Vite) y se organiza alrededor de un conjunto de archivos principales para el bootstrapping de la aplicación y la configuración de la PWA.
 
-| Archivo / Directorio | Descripción |
-|----------------------|-------------|
-| `src/main.tsx` | Punto de montaje principal de React |
-| `src/App.tsx` | Orquestador principal de rutas y lógica de aplicación |
-| `vite.config.ts` | Configuración del sistema de build Vite |
-| `manifest.json` | Configuración PWA |
-| `package.json` | Dependencias del proyecto |
+---
 
-### Decisiones de Diseño Relacionadas con la Estructura:
+### public/ — Archivos estáticos y manifest
+Contiene `index.html`, `manifest.json`, favicons y otros archivos que se sirven sin procesamiento. Mantén `public/` ligero y coloca assets que requieren fingerprinting en `src/assets/`.
 
-- **Organización de Características (Rutas)**: Cada característica principal tiene una ruta dedicada
-- **Gestión de Datos**: Operaciones abstraídas mediante Custom Hooks
-- **Arquitectura Componentes**: Enfoque modular y reutilizable
+- Permalink: https://github.com/JuanAldairRamirezMendez/Frontend-Huancavelica-Alertas-Agricolas/blob/b9e8a1f90a3a86bbb666c766a63fca3ace9d425b/public/README.md
 
-## Arquitectura de Microservicios
+---
 
-La arquitectura del proyecto está diseñada como un sistema distribuido basado en microservicios para garantizar escalabilidad, mantenibilidad y resiliencia.
 
-### Microservicios Principales
+## 🎯 Propósito y contexto del sistema
 
-| Microservicio | Responsabilidad Principal |
-|---------------|---------------------------|
-| Gateway | Punto de entrada de peticiones externas |
-| User | Gestión de usuarios y autenticación |
-| Weather | Integración con APIs de datos climáticos |
-| Alert | Motor de reglas para generación de alertas |
-| Notification | Servicio de notificaciones multicanal |
-| Log | Registro de eventos del sistema |
+**Frontend Huancavelica Alertas Agrícolas** es una **Aplicación Web Progresiva (PWA)** diseñada para entregar **alertas climáticas agrícolas** a productores del departamento de **Huancavelica, Perú**.  
+El sistema responde a los principales desafíos de las comunidades agrícolas locales:
 
-### Arquitectura y Comunicación
+| Desafío | Descripción |
+|----------|--------------|
+| Conectividad intermitente | Acceso a internet poco confiable en zonas rurales |
+| Accesibilidad lingüística | Usuarios hablan español, quechua o ambos |
+| Uso móvil prioritario | Dispositivos con planes de datos limitados |
+| Alertas en tiempo real | Necesidad de recibir avisos inmediatos (heladas, granizo, sequía) |
 
-- **Persistencia Desacoplada**: Cada microservicio con base de datos independiente
-- **Comunicación Síncrona**: APIs RESTful con JSON
-- **Comunicación Asíncrona**: Message Broker para tareas críticas
-- **Seguridad**: JWT para autenticación y autorización
+La aplicación implementa una **arquitectura offline-first**, lo que permite a los agricultores acceder a la información crítica **sin conexión activa**.  
+Todas las funciones clave —autenticación, alertas, cultivos y clima— operan del lado del cliente usando `localStorage`.
 
-## Metodología de Desarrollo
+**Fuentes:**  
+- Diagrama de Arquitectura del Sistema (Nivel Alto)  
+- `README.md`, `package.json`
 
-- **Control de Versiones**: Git con flujo de ramas estructurado
-- **Testing**: Estrategia de pirámide de pruebas
-- **Documentación**: Formatos estandarizados para documentación técnica
-- **CI/CD**: Integración y despliegue continuo
+---
 
-## Arquitectura de Despliegue
+## 🧩 Arquitectura de alto nivel
 
-- **Desarrollo**: Docker Compose para entorno local
-- **Producción**: Infraestructura containerizada con orquestación
-- **Monitoreo**: Sistema centralizado de logs y métricas
-- **Backups**: Procedimientos automatizados de respaldo
+El sistema sigue una **arquitectura por capas** con cinco subsistemas principales:
 
-## Análisis de Limitaciones
+- Interfaz de usuario (UI)
+- Gestión de estado y hooks
+- Ruteo y navegación
+- Almacenamiento local y persistencia
+- Configuración PWA e instalación
 
-- **Alcance Técnico**: Limitaciones deliberadas en el alcance del proyecto
-- **Dependencias Externas**: Consideraciones sobre APIs de terceros
-- **Recursos Hardware**: Restricciones de infraestructura física
+**Fuentes:**  
+- `src/App.tsx` (líneas 1–152)  
+- `package.json` (líneas 6–52)  
+- Diagrama de Arquitectura del Sistema
 
-## Plan de Evolución
+---
 
-- **Mejoras Funcionales**: Funcionalidades planificadas para futuras iteraciones
-- **Optimizaciones Técnicas**: Mejoras de rendimiento y seguridad
-- **Escalabilidad**: Estrategias para crecimiento futuro
+## ⚙️ Stack tecnológico
 
-## Equipo de Desarrollo
+| Capa | Tecnología | Versión | Propósito |
+|------|-------------|----------|------------|
+| Framework frontend | React | 18.3.1 | Renderizado basado en componentes |
+| Sistema de build | Vite | 6.3.5 | Empaquetado ES modules, HMR |
+| Plugin de compilación | @vitejs/plugin-react-swc | 3.10.2 | Compilación rápida de React |
+| Ruteo | react-router-dom | 7.9.2 | Navegación cliente |
+| Componentes UI | Radix UI | varias | Primitivos accesibles |
+| Estilos | Tailwind CSS | 4.1.13 | Framework CSS utilitario |
+| Iconos | lucide-react | 0.487.0 | Biblioteca de iconos SVG |
+| Gráficos | Recharts | 2.15.2 | Visualización de datos |
+| Formularios | react-hook-form | 7.55.0 | Manejo de estado de formularios |
+| HTTP client | axios | 1.12.2 | Comunicación con API backend |
+| Temas | next-themes | 0.4.6 | Gestión modo claro/oscuro |
+| Notificaciones | sonner | 2.0.3 | Alertas toast |
+| Despliegue | Vercel | N/A | Hosting SPA |
+| Soporte PWA | manifest.json | N/A | Configuración de instalación |
 
-| Nombre | Rol | Responsabilidades |
-|--------|-----|-------------------|
-| Lady | Líder de Proyecto | Gestión y documentación |
-| Juan | Líder Backend | Arquitectura microservicios |
-| Dario | Frontend | Desarrollo de interfaz |
-| Angelo | DevOps | Infraestructura y despliegue |
+---
 
-## Documentación Asociada
+## 🧠 Capacidades principales
 
-- **Documentación Técnica**: Especificaciones de arquitectura y API
-- **Manual de Usuario**: Guías de uso para agricultores
-- **Plan de Proyecto**: Documentación de planificación y requisitos
+### 1. Autenticación Offline-First
+Opera completamente sin backend.  
+Credenciales demo almacenadas en `localStorage.demoUser`.  
+Sesiones persistidas en `localStorage.climaAlert_user`.  
+Uso de `navigator.onLine` para detección de red y mensajes adaptativos.  
+
+**Implementación:** `src/App.tsx` (líneas 31–51), hook `useAuth()`, componente `LoginForm`.
+
+---
+
+### 2. Aplicación Web Progresiva (PWA)
+Instalable como app nativa con soporte sin conexión.  
+Manifesto define nombre, íconos y colores.  
+Modo independiente sin UI de navegador.  
+Todas las funciones operan sin internet.
+
+**Implementación:** `index.html`, `manifest.json`.
+
+---
+
+### 3. Interfaz Trilingüe
+Soporta **Español**, **Quechua** y **Inglés**.  
+Manejada por `LanguageProvider` en `src/main.tsx`.  
+Ideal para usuarios locales y técnicos.
+
+---
+
+### 4. Gestión de datos agrícolas
+Hooks personalizados con caché local:
+
+| Hook | Propósito | Fuente |
+|------|------------|--------|
+| useAuth() | Sesión de usuario | localStorage |
+| useAlerts() | Alertas climáticas | API + caché |
+| useCrops() | Cultivos registrados | API + caché |
+| useWeather() | Condiciones del clima | API + caché |
+| useRecommendations() | Recomendaciones agrícolas | API + caché |
+
+---
+
+### 5. Optimización del build (code splitting)
+Se definen **5 chunks** principales para optimizar caché y carga:
+
+| Chunk | Contenido | Propósito |
+|--------|------------|-----------|
+| react-vendor | React y ReactDOM | Núcleo |
+| ui-vendor | Radix UI | Componentes |
+| charts-vendor | Recharts | Gráficos |
+| forms-vendor | React Hook Form | Formularios |
+| utils-vendor | Lucide, cmdk | Utilidades |
+
+**Implementación:** `vite.config.ts`.
+
+---
+
+## 🔁 Flujo de aplicación
+
+1. **Inicio:** `index.html` → `main.tsx` → `App.tsx`  
+2. **Autenticación:** `useAuth()` verifica sesión en `localStorage`.  
+3. **Login:** formulario `/login`, guarda sesión en `climaAlert_user`.  
+4. **Dashboard:** inicializa hooks `useAlerts`, `useCrops`, `useWeather`.  
+5. **Navegación:** rutas protegidas `/alerts`, `/reports`, `/crops`, etc.  
+
+**Fuentes:**  
+- `src/App.tsx` (50–152)  
+- `src/main.tsx`
+
+---
+
+## 🧱 Decisiones clave de diseño
+
+1. **Arquitectura Offline-First:** acceso total sin red.  
+2. **Code Splitting Manual:** control fino de caché.  
+3. **Contexto de idioma:** manejo simple sin librerías externas.  
+4. **Rutas por funcionalidad:** separación modular.  
+5. **DashboardLoader:** inicialización centralizada de hooks.  
+
+---
+
+## 📊 Métricas del sistema
+
+| Métrica | Valor | Significado |
+|----------|--------|-------------|
+| Prioridad de optimización de build | 19.68 | Desempeño en red lenta |
+| Prioridad del componente LoginForm | 12.56 | Flujo central |
+| Componentes UI Radix | 24+ | Base visual accesible |
+| Hooks personalizados | 5 | useAuth, useAlerts, etc. |
+| Idiomas soportados | 3 | ES, QU, EN |
+| Rutas protegidas | 9 | Secciones autenticadas |
+
+---
+
+## 🚀 Próximos pasos
+
+Para más detalles sobre subsistemas:
+
+- **Configuración local:** ver *Getting Started*  
+- **Arquitectura profunda:** ver *System Architecture*  
+- **Despliegue:** ver *Build & Deployment System*  
+- **Autenticación:** ver *Authentication System*  
+- **Dashboard:** ver *Dashboard System*  
+- **UI y Navegación:** ver *UI Component System*  
+- **Datos:** ver *Data Management*  
+- **PWA:** ver *Progressive Web App Features*  
+- **Internacionalización:** ver *Internationalization*  
