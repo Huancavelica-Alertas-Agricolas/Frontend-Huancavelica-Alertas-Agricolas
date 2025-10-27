@@ -21,7 +21,7 @@ import {
   HardDrive
 } from 'lucide-react';
 
-export function ConfigurationScreen() {
+function ConfigurationScreen() {
   const [offlineMode, setOfflineMode] = useState(true);
   const [smsNotifications, setSmsNotifications] = useState(true);
   const [telegramNotifications, setTelegramNotifications] = useState(true);
@@ -282,3 +282,5 @@ export function ConfigurationScreen() {
     </div>
   );
 }
+
+export default ConfigurationScreen;

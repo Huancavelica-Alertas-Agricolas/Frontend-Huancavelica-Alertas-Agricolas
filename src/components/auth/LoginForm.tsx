@@ -5,7 +5,7 @@ import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Alert, AlertDescription } from '../ui/alert';
-import { useAuth } from '../../hooks/useAuth'; // Importa el hook
+import { useAuth } from '../../hooks/useAuth';
 
 // Definir tipos localmente
 interface AuthFormData {
@@ -21,7 +21,6 @@ const PHONE_PATTERN = /^\+51\s?\d{9}$/;
 
 const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
     const { login, isLoading: authLoading } = useAuth();
-    const [isLoading, setIsLoading] = useState(false);
     const [showReset, setShowReset] = useState(false);
     const [resetPhone, setResetPhone] = useState('+51 ');
     const [resetMessage, setResetMessage] = useState('');
@@ -73,9 +72,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
 
             if (result.success) {
                 setSuccessMessage('✅ ¡Acceso exitoso! Entrando al dashboard...');
+                // ✅ Redirigir inmediatamente en lugar de esperar
                 setTimeout(() => {
-                    onSuccess?.();
-                }, 1000);
+                    window.location.href = '/dashboard'; // Redirección forzada
+                }, 500);
             } else {
                 setGeneralError(result.error || 'Teléfono o contraseña incorrectos');
             }
@@ -203,7 +203,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
                                 className="w-full min-h-[52px] text-base touch-friendly bg-green-600 hover:bg-green-700"
                                 disabled={authLoading}
                             >
-                                {isLoading ? '🔄 Ingresando...' : isOnline ? '🚀 Ingresar' : '📱 Ingresar (Modo Offline)'}
+                                {authLoading ? '🔄 Ingresando...' : isOnline ? '🚀 Ingresar' : '📱 Ingresar (Modo Offline)'}
                             </Button>
                             <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mt-2">
                                 <Button

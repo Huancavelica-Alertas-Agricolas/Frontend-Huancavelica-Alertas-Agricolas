@@ -2,7 +2,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 
-export const UserProfile = () => {
+const UserProfile = () => {
   const { user, logout } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState({
@@ -78,3 +78,5 @@ export const UserProfile = () => {
     </div>
   );
 };
+
+export default UserProfile;

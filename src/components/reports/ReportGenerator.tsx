@@ -8,7 +8,7 @@ import { TemperatureChart } from './TemperatureChart';
 import { CropType, Report } from '../../types';
 import { CROP_TYPES, DATE_RANGES } from '../../utils/constants';
 
-export const ReportGenerator = () => {
+const ReportGenerator = () => {
   const [selectedCrop, setSelectedCrop] = useState<CropType>('papa');
   const [selectedPeriod, setSelectedPeriod] = useState<number>(7);
   const [currentReport, setCurrentReport] = useState<Report | null>(null);
@@ -135,3 +135,5 @@ export const ReportGenerator = () => {
     </div>
   );
 };
+
+export default ReportGenerator;

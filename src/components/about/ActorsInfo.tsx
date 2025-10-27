@@ -1,4 +1,4 @@
-export const ActorsInfo = () => (
+const ActorsInfo = () => (
   <div className="max-w-2xl mx-auto bg-white rounded-lg shadow p-6 mt-6">
     <h2 className="text-2xl font-bold mb-4">👥 Actores del Sistema</h2>
     <table className="w-full text-sm mb-4 border">
@@ -52,3 +52,5 @@ export const ActorsInfo = () => (
     </ul>
   </div>
 );
+
+export default ActorsInfo;

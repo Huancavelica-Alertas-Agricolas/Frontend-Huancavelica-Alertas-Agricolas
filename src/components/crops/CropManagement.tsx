@@ -37,7 +37,7 @@ import { useCrops } from "../../hooks/useCrops";
 import { CropType } from "../../types";
 import { useLanguage } from '../../context/LanguageContext';
 
-export const CropManagement = () => {
+const CropManagement = () => {
   const { language } = useLanguage();
   const { crops, addCrop, updateCrop, deleteCrop } = useCrops();
   const [showAddDialog, setShowAddDialog] = useState(false);
@@ -472,3 +472,5 @@ export const CropManagement = () => {
     </div>
   );
 };
+
+export default CropManagement;

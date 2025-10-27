@@ -1,4 +1,4 @@
-export const UserManual = () => (
+const UserManual = () => (
   <div className="max-w-2xl mx-auto bg-white rounded-lg shadow p-6 mt-6">
     <h2 className="text-2xl font-bold mb-4">📖 Manual de Usuario</h2>
     <ol className="list-decimal pl-6 text-sm mb-4">
@@ -15,3 +15,5 @@ export const UserManual = () => (
     <p className="text-xs text-gray-500 mt-4">Este sistema está dirigido principalmente a agricultores de Huancavelica, pero también es útil para técnicos, investigadores y administradores.</p>
   </div>
 );
+
+export default UserManual;

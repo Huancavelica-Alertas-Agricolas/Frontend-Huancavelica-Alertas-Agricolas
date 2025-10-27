@@ -77,8 +77,14 @@ export const useAuth = () => {
                     }
                 };
 
+                // ✅ PRIMERO actualizar el estado y localStorage
                 setUser(newUser);
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(newUser));
+
+                // ✅ ESPERAR un ciclo de render para asegurar la actualización
+                await new Promise(resolve => setTimeout(resolve, 0));
+
+                // ✅ LUEGO desactivar loading y retornar éxito
                 setIsLoading(false);
                 return { success: true };
             }
@@ -95,9 +101,10 @@ export const useAuth = () => {
     };
 
     const logout = () => {
+        setIsLoading(true);
         setUser(null);
         localStorage.removeItem(STORAGE_KEY);
-        // No remueves demoUser para mantener el registro
+        setIsLoading(false);
     };
 
     const updateConsents = (consents: ConsentData) => {
